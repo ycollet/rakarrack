@@ -25,8 +25,7 @@
 
 void RKR::putbuf(char *buf, int j)
 {
-    char *cfilename;
-    cfilename = (char *) malloc (sizeof (char) * 128);
+    char *cfilename = (char *) malloc (sizeof (char) * 128);
 
     switch (j) {
 
@@ -262,7 +261,7 @@ void RKR::putbuf(char *buf, int j)
     case 29:
         //Convolotron
         memset(efx_Convol->Filename,0, sizeof(efx_Convol->Filename));
-        memset(cfilename,0, sizeof(cfilename));
+        memset(cfilename,0, 128 * sizeof(char));
         sscanf (buf, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s\n",
                 &lv[30][0], &lv[30][1], &lv[30][2], &lv[30][3], &lv[30][4],
                 &lv[30][5], &lv[30][6], &lv[30][7], &lv[30][8], &lv[30][9],
@@ -347,7 +346,7 @@ void RKR::putbuf(char *buf, int j)
     case 40:
         //Reverbtron
         memset(efx_Reverbtron->Filename,0, sizeof(efx_Reverbtron->Filename));
-        memset(cfilename,0, sizeof(cfilename));
+        memset(cfilename,0, 128 * sizeof(char));
         sscanf (buf, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s\n",
                 &lv[41][0], &lv[41][1], &lv[41][2], &lv[41][3], &lv[41][4],
                 &lv[41][5], &lv[41][6], &lv[41][7], &lv[41][8], &lv[41][9],
@@ -360,7 +359,7 @@ void RKR::putbuf(char *buf, int j)
     case 41:
         //Echotron
         memset(efx_Echotron->Filename,0, sizeof(efx_Echotron->Filename));
-        memset(cfilename,0, sizeof(cfilename));
+        memset(cfilename,0, 128 * sizeof(char));
         sscanf (buf, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s\n",
                 &lv[42][0], &lv[42][1], &lv[42][2], &lv[42][3], &lv[42][4],
                 &lv[42][5], &lv[42][6], &lv[42][7], &lv[42][8], &lv[42][9],
@@ -1683,7 +1682,7 @@ RKR::loadbank (char *filename)
 {
 
     int err_message=1;
-    char meslabel[64];
+    char meslabel[128];
     FILE *fn;
 
 
@@ -1863,11 +1862,11 @@ RKR::New ()
 
     for (j=0; j<10; j++) active[j]=0;
 
-    memset(Preset_Name, 0,sizeof (Preset_Name));
+    memset(Preset_Name, 0, 64 * sizeof (char));
     memset(efx_Convol->Filename,0,sizeof(efx_Convol->Filename));
     memset(efx_Reverbtron->Filename,0,sizeof(efx_Reverbtron->Filename));
     memset(efx_Echotron->Filename,0,sizeof(efx_Echotron->Filename));
-    memset (Author,0, sizeof (Author));
+    memset (Author,0, 64 * sizeof (char));
     strcpy(Author,UserRealName);
     Input_Gain = .5f;
     Master_Volume = .5f;
@@ -2110,9 +2109,9 @@ RKR::Bank_to_Preset (int i)
     int j, k;
 
 
-    memset(Preset_Name, 0,sizeof (Preset_Name));
+    memset(Preset_Name, 0, 64 * sizeof (char));
     strcpy (Preset_Name, Bank[i].Preset_Name);
-    memset(Author, 0,sizeof (Author));
+    memset(Author, 0, 64 * sizeof (char));
     strcpy (Author, Bank[i].Author);
     memset(efx_Convol->Filename, 0, sizeof (efx_Convol->Filename));
     strcpy (efx_Convol->Filename,Bank[i].ConvoFiname);
@@ -2641,8 +2640,8 @@ RKR::SaveIntPreset(int num,char *name)
     FILE *fn;
     char tempfile[256];
     char buf[256];
-    char sbuf[256];
-    memset(tempfile,0,sizeof(tempfile));
+    char sbuf[260];
+    memset(tempfile,0, 256 * sizeof(char));
     sprintf (tempfile, "%s%s", getenv ("HOME"), "/.rkrintpreset");
 
     if (( fn = fopen (tempfile, "a")) != NULL) {

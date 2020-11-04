@@ -46,7 +46,7 @@ main(int argc, char *argv[])
  FILE *fn;
  SNDFILE *infile = NULL;
  SF_INFO sfinfo;
- char Outputfile[128];
+ char Outputfile[256];
  char Inputfile[128];
  char tempfile[128];
  float *buf;
@@ -120,7 +120,7 @@ main(int argc, char *argv[])
 
 if(!have_output)
 {
- strncpy(tempfile, Inputfile, strlen(Inputfile)-4);
+  strncpy(tempfile, Inputfile, (128 - 4) * sizeof(char));
  sprintf(Outputfile, "%s.rvb",tempfile);
 }
 

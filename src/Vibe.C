@@ -88,14 +88,12 @@ void
 Vibe::out (float *smpsl, float *smpsr)
 {
 
-    int i,j;
-    float lfol, lfor, xl, xr, fxl, fxr;
+    int i = 0, j = 0;
+    float lfol = 0.0f, lfor = 0.0f, xl = 0.0f, xr = 0.0f, fxl = 0.0f, fxr = 0.0f;
     //float vbe,vin;
-    float cvolt, ocvolt, evolt, input;
+    float cvolt = 0.0f, ocvolt = 0.0f, evolt = 0.0f, input = 0.0f;
     float emitterfb = 0.0f;
-    float outl, outr;
-
-    input = cvolt = ocvolt = evolt = 0.0f;
+    float outl = 0.0f, outr = 0.0f;
 
     lfo.effectlfoout (&lfol, &lfor);
 
@@ -405,10 +403,6 @@ Vibe::modulate(float ldrl, float ldrr)
     float C2pC1;
     Rv = 4700.0f + ldrl;
     R1pRv = R1 + Rv;
-
-    int lrchoice;
-    if(Pstereo) lrchoice = 8;
-    else lrchoice = 4;
 
     for(int i =0; i<8; i++) {
         if(i==4) {

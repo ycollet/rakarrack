@@ -844,7 +844,7 @@ void RKRGUI::cb_Load_Skin(Fl_Menu_* o, void* v) {
 void RKRGUI::cb_Save_Skin_i(Fl_Menu_*, void*) {
   char *filename;
 #define EXT ".rkrs"
-filename=fl_file_chooser("Save Skin:","(*"EXT")","",0);
+filename=fl_file_chooser("Save Skin:","(*" EXT ")","",0);
 if (filename==NULL) return;
 filename=fl_filename_setext(filename,EXT);
 #undef EXT
@@ -878,7 +878,7 @@ void RKRGUI::cb_Load_MTable(Fl_Menu_* o, void* v) {
 void RKRGUI::cb_Save_MTable_i(Fl_Menu_*, void*) {
   char *filename;
 #define EXT ".rmt"
-filename=fl_file_chooser("Save MIDI Table:","(*"EXT")","",0);
+filename=fl_file_chooser("Save MIDI Table:","(*" EXT ")","",0);
 if (filename==NULL) return;
 filename=fl_filename_setext(filename,EXT);
 #undef EXT
@@ -890,7 +890,7 @@ void RKRGUI::cb_Save_MTable(Fl_Menu_* o, void* v) {
 
 void RKRGUI::cb_ConvertReverb_i(Fl_Menu_*, void*) {
   char *filename;
-char name[64];
+char name[128];
 memset(name,0, sizeof(name));
 sprintf(name,"%s %s",rkr->jackcliname, VERSION);
 
@@ -9610,7 +9610,7 @@ void RKRGUI::cb_MIDI_LABEL_i(Fl_Box*, void*) {
 char *filename;
 
 #define EXT ".rkrb"
-filename=fl_file_chooser("Save Bank File:","(*"EXT")",rkr->Bank_Saved,0);
+filename=fl_file_chooser("Save Bank File:","(*" EXT ")",rkr->Bank_Saved,0);
 if (filename==NULL) return;
 filename=fl_filename_setext(filename,EXT);
 #undef EXT
@@ -9813,7 +9813,7 @@ void RKRGUI::cb_L_preset(Fl_Button* o, void* v) {
 void RKRGUI::cb_S_preset_i(Fl_Button*, void*) {
   char *filename;
 #define EXT ".rkr"
-filename=fl_file_chooser("Save Preset:","(*"EXT")",rkr->Preset_Name,0);
+filename=fl_file_chooser("Save Preset:","(*" EXT ")",rkr->Preset_Name,0);
 if (filename==NULL) return;
 filename=fl_filename_setext(filename,EXT);
 #undef EXT
@@ -10102,7 +10102,7 @@ void RKRGUI::cb_Save_Bank(Fl_Menu_* o, void* v) {
 
 void RKRGUI::cb_Convert_Old_Bank_i(Fl_Menu_*, void*) {
   char *filename;
-char name[64];
+char name[128];
 memset(name,0, sizeof(name));
 sprintf(name,"%s %s",rkr->jackcliname, VERSION);
 
@@ -27919,7 +27919,7 @@ inline void RKRGUI::addpreset(Fl_Widget *w, int num) {
   if(num==12) return;
   const char *name = fl_input("Preset Name?","");
   if(name==NULL) return;
-  char NewName[64];
+  char NewName[128];
   memset(NewName,0,sizeof(NewName));
   sprintf(NewName,"*%s",name);
   add_name(w,NewName);
