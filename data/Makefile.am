@@ -1,6 +1,15 @@
 pkgdata_DATA = Default.rkrb \
 	Extra.rkrb \
 	Extra1.rkrb \
+	Blues_Crunch.rkr \
+	Steve_Distortion.rkr \
+	Sweet_Rack_O_Mine_v1.0.rkr \
+	crazymutroshifta.rkr \
+	dualflange1.rkr \
+	dualflange2.rkr \
+	dualflange3.rkr \
+	motoroil.rkr \
+	mutroshifta.rkr \
 	1.wav \
 	2.wav \
 	3.wav \
